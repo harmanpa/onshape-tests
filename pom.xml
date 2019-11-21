@@ -33,15 +33,20 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.jupiter.version}</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.github.onshape-public</groupId>
             <artifactId>java-client</artifactId>
-            <version>v1.93.23050.f7e220beef3f</version>
-        </dependency>-->
-        <dependency>
+            <version>513cc1c3e2</version>
+        </dependency>
+<!--        <dependency>
             <groupId>com.onshape</groupId>
             <artifactId>api-client</artifactId>
-            <version>1.94.23177.44a2c60bcdd0</version>
+            <version>1.99.23855.f5cc4a550faa</version>
+        </dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>25.0-jre</version>
         </dependency>
     </dependencies>
     <build>

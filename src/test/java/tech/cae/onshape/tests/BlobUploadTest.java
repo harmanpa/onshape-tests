@@ -28,7 +28,9 @@ import com.onshape.api.desktop.OnshapeDesktop;
 import com.onshape.api.exceptions.OnshapeException;
 import com.onshape.api.responses.BlobElementsUploadFileCreateElementResponse;
 import com.onshape.api.responses.DocumentsCreateDocumentResponse;
+import com.onshape.api.types.Blob;
 import java.io.File;
+import java.io.IOException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +40,7 @@ import org.junit.jupiter.api.Test;
  */
 public class BlobUploadTest {
 
-    @Test
+    //@Test
     public void testOAuth() {
         Onshape o = new Onshape();
         OnshapeDesktop od = new OnshapeDesktop(System.getenv("ONSHAPE_CLIENTID"), System.getenv("ONSHAPE_CLIENTSECRET"));
@@ -71,13 +73,15 @@ public class BlobUploadTest {
         try {
             response = o.blobElements()
                     .uploadFileCreateElement()
-                    .file(f)
+                    .file(new Blob(f))
                     .translate(Boolean.TRUE)
                     .yAxisIsUp(Boolean.FALSE)
                     .flattenAssemblies(Boolean.FALSE)
                     .call(createdDocument.getId(), createdDocument.getDefaultWorkspace().getId());
         } catch (OnshapeException ex) {
             Assertions.fail("Failed to upload blob to new element", ex);
+        } catch (IOException ex) {
+            Assertions.fail("Failed to read blob", ex);
         }
         try {
             o.documents().deleteDocument().call(createdDocument.getId());
